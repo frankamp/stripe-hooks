@@ -21,9 +21,9 @@ class TestHelpers(UnitTest):
         }
         temp_file.write(json.dumps(test_conf))
         temp_file.seek(0)
-
+        test_parsed_conf = dict(test_conf, {"notifications": {}, "receipts": {}})
         conf = load_configuration(temp_file.name)
-        assert conf == test_conf
+        assert conf == test_parsed_conf
 
     def test_load_configuration_incomplete(self):
         "Raises proper errors for an incomplete configuration"
