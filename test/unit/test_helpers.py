@@ -21,7 +21,8 @@ class TestHelpers(UnitTest):
         }
         temp_file.write(json.dumps(test_conf))
         temp_file.seek(0)
-        test_parsed_conf = dict(test_conf, {"notifications": {}, "receipts": {}})
+        added = {"notifications": {}, "receipts": {}}
+        test_parsed_conf = dict(test_conf, **added)
         conf = load_configuration(temp_file.name)
         assert conf == test_parsed_conf
 
