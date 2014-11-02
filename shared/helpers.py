@@ -50,6 +50,18 @@ def load_configuration(path):
         raise Exception(
             "Configuration failure: a notification address is required")
 
+    notifications = {}
+    for k, v in data['notifications'].iteritems():
+        if 'active' in v and v['active'] == True:
+            notifications[k] = v
+    data['notifications'] = notifications
+    
+    receipts = {}
+    for k, v in data['receipts'].iteritems():
+        if 'active' in v and v['active'] == True:
+            receipts[k] = v
+    data['receipts'] = receipts
+    
     return data
 
 
